@@ -1,27 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{ pageData.categoryInfo.title }}</title>
-    <meta
-</head>
-<body>
-    <h1>{{ pageData.categoryInfo.title }}</h1>
-    {% if userData.email %}
-    Uživatel: {{ userData.email }}; <a href="{{ domainData.SITE_WEB }}/doLogOut">Odhlásit</a>
-        {% if userData.email %} <a href="{{ domainData.SITE_WEB }}/admin/">Administrace</a>  {% endif %}
-{% else %}
-    {% include 'inc/logForm.twig' %}
-   
-{% endif %}
-    <navigation>{{ navigation|raw }}</navigation>
-    <content>
-    <ul>
-    {% for item in displayData %}
-        <li>Název: {{ item.title }}, Snippet: {{ item.snippet }}, URL: <a href="http://{{ item.domain }}{{ item.url }}">http://{{ item.domain }}{{ item.url }}</a></li>
-    {% endfor %}
-</ul>
+{% extends "index.twig" %}
+{% block title %}{{ pageData.categoryInfo.title }}{% endblock %}
+{% block description %}{{ pageData.categoryInfo.description }}{% endblock %}
+{% block nadpis %}{{ displayData.title }}{% endblock %}
 
-    </content>
 
-</body>
-</html>
+{% block obsah %}
+{{  displayData.body }}
+{% endblock %}
